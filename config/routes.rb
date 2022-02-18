@@ -5,8 +5,8 @@ Rails.application.routes.draw do
       #resources :categories
       #resources :tools, only: [:index, :create, :update]
       #resources :users, only: [:create]
-      post "signup", to: "users#create"
-      post "login", to: "auth#create"
+      post "/signup", to: "users#create"
+      post "/login", to: "auth#create"
 
     end 
   end 

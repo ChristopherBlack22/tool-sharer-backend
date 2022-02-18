@@ -7,7 +7,7 @@ class Api::V1::AuthController < ApplicationController
         if user && user.authenticate(user_login_params[:password])
             token = encode_token(user_id: user.id) #if user exists and password matches create a token using its id
             render json: {
-                UserSerializer.new(user).to_serialized_json,
+                #UserSerializer.new(user).to_serialized_json,
                 #### What data needs to be sent, create a serializer
                 jwt: token
             },
