@@ -12,8 +12,9 @@ class Api::V1::UsersController < ApplicationController
             },
             status: :created
         else
+            validation_errors = user.errors.full_messages.join(". ")
             render json: {
-                error: "Unable to create user"
+                error: "Unable to create user. #{validation_errors}."
             },
             status: :unprocessable_entity
         end
