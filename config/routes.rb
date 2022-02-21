@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
 
-      #resources :categories, only: [:index]
-      resources :tools, only: [:index, :create, :update]
+      #resources :tools, only: [:index, :create, :update]
+      get "/categories", to: "categories#index"
       post "/signup", to: "users#create"
       post "/login", to: "auth#create"
 
