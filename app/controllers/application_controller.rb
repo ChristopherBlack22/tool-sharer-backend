@@ -1,13 +1,15 @@
+require "pry"
 class ApplicationController < ActionController::API
     before_action :authorized
 
-    def initialize
-        @secret = "Flatiron_School_Module_5" #Move to environment variable ENV? (Figaro)
-    end
+    # def initialize
+        @@secret = "Flatiron_School_Module_5" #Move to environment variable ENV? (Figaro)
+    # end
 
     def encode_token(payload)
+        binding.pry
         #payload is {user_id: user.id}
-        JWT.encode(payload, @secret)
+        JWT.encode(payload, @@secret)
     end
 
 
@@ -20,7 +22,7 @@ class ApplicationController < ActionController::API
         if auth_header
             token = auth_header.split(" ")[1] #split the value to create an array and access the second element
             begin
-                JWT.decode(token, @secret, true, algorithm: 'HS256')
+                JWT.decode(token, @@secret, true, algorithm: 'HS256')
             rescue JWT::DecodeError
                 nil
             end
