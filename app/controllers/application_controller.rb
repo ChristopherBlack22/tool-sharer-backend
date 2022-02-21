@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::API
     before_action :authorized
 
-    @secret = "Flatiron_School_Module_5" #Move to environment variable dotenv-rails?
-
+    def initialize
+        @secret = "Flatiron_School_Module_5" #Move to environment variable ENV? (Figaro)
+    end
 
     def encode_token(payload)
         #payload is {user_id: user.id}
