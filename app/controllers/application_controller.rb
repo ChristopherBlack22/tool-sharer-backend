@@ -1,13 +1,9 @@
-require "pry"
 class ApplicationController < ActionController::API
     before_action :authorized
 
-    # def initialize
-        @@secret = "Flatiron_School_Module_5" #Move to environment variable ENV? (Figaro)
-    # end
+    @@secret = "Flatiron_School_Module_5" #Move to environment variable ENV? (Figaro)
 
     def encode_token(payload)
-        binding.pry
         #payload is {user_id: user.id}
         JWT.encode(payload, @@secret)
     end
