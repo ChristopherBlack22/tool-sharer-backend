@@ -8,6 +8,8 @@ class Api::V1::CategoriesController < ApplicationController
             categories: CategorySerializer.new(categories).to_serialized_json,
             tools: ToolSerializer.new(tools).to_serialized_json
         }
+
+        #add conditional to render error?
     end 
 
 end

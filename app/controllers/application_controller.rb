@@ -6,16 +6,16 @@ class ApplicationController < ActionController::API
 
     def encode_token(payload)
         #payload is {user_id: user.id}
-        JWT.encode(payload, @secret, "HS256")
+        JWT.encode(payload, @secret)
     end
 
 
     def auth_header
         #requesting header Authorization: Bearer <token>
-        auth_header = request.headers["Authorization"]
+        auth_header = request.headers['Authorization']
     end 
 
-    def decode_token
+    def decoded_token
         if auth_header
             token = auth_header.split(" ")[1] #split the value to create an array and access the second element
             begin
@@ -27,9 +27,9 @@ class ApplicationController < ActionController::API
     end 
 
     def current_user
-        if decode_token
+        if decoded_token
             # if token can be decoded, and not result in nil. decoded_token is [{user_id: <user_id>}, {"alg"=>"HS256"}]
-            user_id = decoded_token[0]["user_id"]
+            user_id = decoded_token[0]['user_id']
             user = User.find_by(id: user_id)
         end 
     end 
