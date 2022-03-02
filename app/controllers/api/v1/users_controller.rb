@@ -2,7 +2,6 @@ class Api::V1::UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
     
     def create
-        params.inspect
         user = User.new(user_params)
         if user.save
             token = encode_token(user_id: user.id) #if a valid user is created and saved create a token using its id
