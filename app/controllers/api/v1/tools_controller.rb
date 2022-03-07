@@ -1,12 +1,12 @@
 class Api::V1::ToolsController < ApplicationController
 
-    # def index
-        # tools = Tool.all
-        # render json: {
-        #         tools: ToolSerializer.new(tools).to_serialized_json
-        #     },
-        #     status: :ok
-    # end
+    def index
+        tools = Tool.all
+        render json: {
+            tools: ToolSerializer.new(tools).to_serialized_json
+        },
+        status: :ok
+    end
 
     def create
         tool = Tool.new(tool_params)
