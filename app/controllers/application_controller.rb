@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
     before_action :authorized
 
-    @@secret = "Flatiron_School_Module_5" #Move to environment variable ENV? (Figaro)
+    @@secret = "Flatiron_School_Module_5" #Move to environment variable ENV
 
     def encode_token(payload)
         #payload is {user_id: user.id}
